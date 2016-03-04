@@ -1,0 +1,31 @@
+{% extends "app/base.html" %}
+
+{% block title %} Category List {% endblock %}
+
+{% block maincontent %}
+
+<h2 class="sub-header">Category 列表</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>名称</th>
+		     <th>Create Time</th>
+                </tr>
+              </thead>
+              <tbody>
+	      {% if categories %}
+		{% for c in categories %}
+                <tr>
+                  <th>{{ forloop.counter }}</th>
+                  <th>{{ c.name }}</th>
+		  <th>{{ c.ctime }}</th>
+                </tr>
+                {% endfor %}
+              {% endif %}
+              </tbody>
+            </table>
+          </div>
+
+{% endblock %}

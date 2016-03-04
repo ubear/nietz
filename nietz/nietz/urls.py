@@ -9,7 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'app.views.index', name='index'),
-    url(r'^app/', include('app.urls'))
+    url(r'^app/', include('app.urls', namespace='app')) # do not forget this
 )
 
 if settings.DEBUG:

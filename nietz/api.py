@@ -11,12 +11,13 @@ from app.models import Game
 
 
 class GamelistHandler(tornado.web.RequestHandler):
-
+    # @tornado.web.asynchronous
     def get(self):
         games = Game.objects.all() # get all the data just once
         games = serializers.serialize('json', games)
         self.set_header('Content-Type', 'text/javascript')
         self.write(games)
+        # self.finish()
 
 
 settings = {}

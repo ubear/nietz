@@ -1,0 +1,62 @@
+
+{% extends "app/base.html"  %}
+
+{% block title %} Game Manage {% endblock %}
+
+{% block maincontent %}
+
+		<div id="myCarousel" class="carousel slide">
+		  <ol class="carousel-indicators">
+		    {% for _ in rotations %}
+		    <li data-target="#myCarousel" data-slide-to="{{ forloop.counter }}" {% if forloop.first %} class="active" {% endif %}></li>
+		    {% endfor %}
+		  </ol>
+		  <!-- Carousel items -->
+		  <div class="carousel-inner">
+		    {% if rotations %}
+			{% for game in rotations %}
+			   {% if game.active %}
+				<div class="{% if forloop.first %}active{% endif %} item"><img src="{{ game.rotation.url_800x200 }}"></div>
+			   {% endif %}
+			{%endfor%}
+		    
+                    {% endif %}
+		  </div>
+		  <!-- Carousel nav -->
+		  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+		  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+		</div>
+
+
+          <h2 class="sub-header">游戏列表</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>编号</th>
+		  <th>logo</th>
+                  <th>名称</th>
+                  <th>类别</th>
+                  
+                  <th>轮播图</th>
+		  <th>下载地址</th>
+                </tr>
+              </thead>
+              <tbody>
+	      {% if games %}
+		{% for game in games %}
+                <tr>
+                  <th>{{ forloop.counter }}</th>
+		  <th><img src="{{ game.logo.url_40x40 }}" class="img-rounded"></th>
+                  <th><a href="{% url 'app:game_detail' game.id %}">{{ game.name }}</a></th>
+                  <th>{{ game.category }}</th>
+                  <th>{% if game.active %}  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> {% else %}
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {% endif %}</th>
+		  <th>{{ game.download }}</th>
+                </tr>
+                {% endfor %}
+              {% endif %}
+              </tbody>
+            </table>
+          </div>
+{% endblock %}
