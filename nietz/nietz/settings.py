@@ -71,7 +71,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'zh-cn'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -95,3 +95,6 @@ MEDIA_URL = '/img/'
 
 # Rotation num
 ROTATION_NUM = 5
+
+# Page num
+PAGE_MAX_NUM = 8

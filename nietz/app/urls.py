@@ -9,4 +9,5 @@ urlpatterns = [
         url(r'^categorylist/$', views.categorylist, name='categorylist'),
         url(r'^rolllist/$', views.rolllist, name='rolllist'),
         url(r'^unstar/$', views.unstar, name='unstar'),
+        url(r'^star/$', views.star, name='star'),
 ]

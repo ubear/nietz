@@ -1,10 +1,10 @@
 {% extends "app/base.html" %}
-
-{% block title %} Star Game List {% endblock %}
+{% load staticfiles %}
+{% block title %} 轮播图列表 {% endblock %}
 
 {% block maincontent %}
 
-<h2 class="sub-header">Star Game List</h2>
+<h2 class="sub-header">轮播图列表</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -14,7 +14,7 @@
                   <th>名称</th>
                   <th>类别</th>
                   <th>下载地址</th>
-                  <th>Cancel</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,50 +26,15 @@
                   <th><a href="{% url 'app:game_detail' game.id %}">{{ game.name }}</a></th>
                   <th>{{ game.category }}</th>
                   <th>{{ game.download }}</th>
-                  <th><button type="button" class="btn btn-danger" id="{{ game.id }}" >Unstar</button></th>
+                  <th><button type="button" class="btn btn-danger btn-sm unstar" id="{{ game.id }}" >Unstar</button></th>
                 </tr>
                 {% endfor %}
               {% endif %}
               </tbody>
             </table>
           </div>
-
 {% endblock %}
 
 {% block extrajs %}
-<script type="text/javascript">
-
-$.ajaxSetup({ 
-     beforeSend: function(xhr, settings) {
-         function getCookie(name) {
-             var cookieValue = null;
-             if (document.cookie && document.cookie != '') {
-                 var cookies = document.cookie.split(';');
-                 for (var i = 0; i < cookies.length; i++) {
-                     var cookie = jQuery.trim(cookies[i]);
-                     // Does this cookie string begin with the name we want?
-                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                         break;
-                     }
-                 }
-             }
-             return cookieValue;
-         }
-         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-             // Only send the token to relative URLs i.e. locally.
-             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-         }
-     } 
-});
-
-  $(".btn").click(function() {
-    $.post("/app/unstar/", {"g_id": this.id}, function(result) {
-      var obj = $.parseJSON(result);
-      alert(obj['msg']);
-      window.location.reload();
-    });
-  });
-</script>
-
+<script src="{% static 'js/star.js' %}"></script>
 {% endblock %}

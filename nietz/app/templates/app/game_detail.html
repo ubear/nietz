@@ -1,12 +1,12 @@
 {% extends "app/base.html"  %}
 
-{% block title %} Game Detail {% endblock %}
+{% block title %} 游戏信息 {% endblock %}
 
 {% block maincontent %}
 
-<h2 class="sub-header">Game Info</h2>
+<h2 class="sub-header">游戏信息</h2>
 <dl class="dl-horizontal">
-  <dt>Name</dt>
+  <dt>游戏名</dt>
   <dd>{{ game.name }} </dd>
 
 
@@ -20,7 +20,7 @@
 </div>
 </dd>
 
- <dt>Rotation Image</dt>
+ <dt>轮播图</dt>
   <dd><div class="row">
   <div class="col-xs-8 col-md-3">
     <a href="{{ game.rotation.url }}" class="thumbnail">
@@ -30,13 +30,13 @@
 </div>
 </dd>
 
-  <dt>Download URL</dt>
+  <dt>下载地址</dt>
   <dd>{{ game.download }}</dd>
 
- <dt>Groups</dt>
+ <dt>分类</dt>
  <dd>{{ game.category }}</dd>
 
- <dt>Create Time</dt>
+ <dt>创建时间</dt>
  <dd>{{ game.ctime }}</dd>
 
  </dl>
