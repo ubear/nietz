@@ -13,7 +13,6 @@ from .forms import CategoryForm
 from .forms import GameForm
 from django.core.urlresolvers import reverse
 import json
-# Create your views here.
 
 
 def index(request):
@@ -25,10 +24,8 @@ def index(request):
     try:
         games = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         games = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         games = paginator.page(paginator.num_pages)
     content = {"games": games, "rotations": rotations}
     return render(request, 'app/index.html', content)
@@ -71,6 +68,7 @@ def unstar(request):
 			result = {"msg": u"成功取消轮播游戏。", "error": 0}
 			return HttpResponse(json.dumps(result))
 
+
 def  category(request):
     if request.method == "POST":
         form = CategoryForm(request.POST)
@@ -81,9 +79,10 @@ def  category(request):
         form = CategoryForm()
     return render(request, 'app/category.html', {"form": form})
 
+
 def game(request):
     if request.method == "POST":
-        form = GameForm(request.POST)
+        form = GameForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/app/")
