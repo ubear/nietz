@@ -12,6 +12,6 @@ class CategoryForm(ModelForm):
 
 
 class GameForm(ModelForm):
-	class Meta:
-		model = Game
-		fields = ['name', 'download', 'logo', 'rotation', 'active', 'category' ]
+    class Meta:
+        model = Game
+        exclude = ['ctime']

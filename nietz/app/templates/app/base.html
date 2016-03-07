@@ -67,8 +67,8 @@
             <li><a href="{% url 'app:rolllist' %}">轮播图表</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">添加游戏</a></li>
-            <li><a href="">添加分类</a></li>
+            <li><a href="{% url 'app:game' %}">添加游戏</a></li>
+            <li><a href="{% url 'app:category' %}">添加分类</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -87,7 +87,7 @@
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
-    
+
     {% block extrajs %}{% endblock %}
   </body>
 </html>

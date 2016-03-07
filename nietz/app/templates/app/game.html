@@ -1,1 +1,43 @@
+{% extends "app/base.html" %}
 
+{% block title %} 添加游戏 {% endblock %}
+
+{% block maincontent %}
+<form class="form-horizontal" method="post" action="." enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <!-- {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+
+    {% endfor %}
+{% endif %} -->
+
+{% for field in form %}
+  <div id="{{ field.auto_id }}_container" class="form-group">
+    {{ field.help_text }}
+    <div>
+      {{ field.label_tag }}  {{ field }}
+    </div>
+    <div id="{{ field.auto_id }}_errors">
+      <div class="alert alert-danger" role="alert">
+          <strong>{{field.errors }}</strong>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">提交</button>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

@@ -6,7 +6,12 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.http import  HttpResponseRedirect
 from django.http import  HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+from .forms import CategoryForm
+from .forms import GameForm
+from django.core.urlresolvers import reverse
 import json
 # Create your views here.
 
@@ -66,9 +71,25 @@ def unstar(request):
 			result = {"msg": u"成功取消轮播游戏。", "error": 0}
 			return HttpResponse(json.dumps(result))
 
+def  category(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/app/categorylist/")
+    else:
+        form = CategoryForm()
+    return render(request, 'app/category.html', {"form": form})
 
-def  category_detail(request, id):
-	pass
+def game(request):
+    if request.method == "POST":
+        form = GameForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/app/")
+    else:
+        form = GameForm()
+    return render(request, 'app/game.html', {"form": form})
 
 
 def game_detail(request, pk):
