@@ -38,14 +38,14 @@ class CacheMixin(object):
             content = self.page_cache.get(self._cache_key)
             if isinstance(content, dict) and content.has_key(settings.expire_s_key):
                 if content.get(settings.expire_s_key) > int(time.time()):
-                    logger.info("Do hit:" + self._cache_key)
+                    logger.info("Do   hit: " + self._cache_key)
                     self.write_cache(content)
                     self.finish()
                 else:
                     self.content = content
-                    logger.info("Soft expire: " + self._cache_key)
+                    logger.info("Soft exp: " + self._cache_key)
             else:
-                logger.debug("No hit:" + self._cache_key)
+                logger.debug("No   hit: " + self._cache_key)
         else:
             logger.debug("Is not update.")
 
@@ -73,12 +73,13 @@ class CacheMixin(object):
         return False # get some arguments from self.request.headers
 
     def write(self, chunk):
+        logger.info("First ac: " + self._cache_key)
         content = chunk
         soft_expire = int(time.time() + settings.expire_1M)
         content.update({settings.expire_s_key: soft_expire})
         real_expire = soft_expire + settings.expire_1H
         self.page_cache.set(self._cache_key, content, real_expire)
-        logger.info("Set key:" + self._cache_key)
+        logger.info("Set  key: " + self._cache_key)
         super(CacheMixin, self).write(json.dumps(content))
 
 

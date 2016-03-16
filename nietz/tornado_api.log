@@ -1,0 +1,22 @@
+2016-03-16 16:41:35,033 - __main__ - INFO - First access: fcc64c9dcaf7856a
+2016-03-16 16:41:35,034 - __main__ - INFO - Set key:fcc64c9dcaf7856a
+2016-03-16 16:41:39,199 - __main__ - INFO - Do hit:fcc64c9dcaf7856a
+2016-03-16 16:41:54,254 - __main__ - INFO - Do hit:fcc64c9dcaf7856a
+2016-03-16 16:42:53,779 - __main__ - INFO - Soft expire: fcc64c9dcaf7856a
+2016-03-16 16:42:53,831 - __main__ - INFO - First ac: fcc64c9dcaf7856a
+2016-03-16 16:42:53,831 - __main__ - INFO - Set key: fcc64c9dcaf7856a
+2016-03-16 16:43:06,043 - __main__ - INFO - Do  hit:fcc64c9dcaf7856a
+2016-03-16 16:43:54,536 - __main__ - INFO - Soft exp: fcc64c9dcaf7856a
+2016-03-16 16:43:54,576 - __main__ - INFO - First ac: fcc64c9dcaf7856a
+2016-03-16 16:43:54,577 - __main__ - INFO - Set key: fcc64c9dcaf7856a
+2016-03-16 16:44:13,792 - __main__ - INFO - Do   hit: fcc64c9dcaf7856a
+2016-03-16 16:44:16,499 - __main__ - INFO - Do   hit: fcc64c9dcaf7856a
+2016-03-16 16:44:21,893 - __main__ - INFO - First ac: 7e067afd35ebe555
+2016-03-16 16:44:21,894 - __main__ - INFO - Set  key: 7e067afd35ebe555
+2016-03-16 16:44:29,133 - __main__ - INFO - Do   hit: 7e067afd35ebe555
+2016-03-16 16:44:34,527 - __main__ - INFO - Soft exp: 98c6edec4de558e7
+2016-03-16 16:44:34,530 - __main__ - INFO - First ac: 98c6edec4de558e7
+2016-03-16 16:44:34,531 - __main__ - INFO - Set  key: 98c6edec4de558e7
+2016-03-16 16:44:39,985 - __main__ - INFO - Do   hit: 98c6edec4de558e7
+2016-03-16 16:44:44,003 - __main__ - INFO - Do   hit: 98c6edec4de558e7
+2016-03-16 16:44:51,089 - __main__ - INFO - Do   hit: 7e067afd35ebe555
