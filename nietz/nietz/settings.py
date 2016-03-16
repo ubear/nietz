@@ -99,3 +99,14 @@ ROTATION_NUM = 5
 
 # Page num
 PAGE_MAX_NUM = 8
+
+# Tornado API Expire Time
+expire_1M = 60
+expire_1H = 60 * 60
+expire_2H = 2 * 60 * 60
+
+# Enable memcache
+Enable_mc = True
+
+# Soft expire time key
+expire_s_key = 'expire'
