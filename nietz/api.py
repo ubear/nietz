@@ -22,7 +22,8 @@ from nietz import settings
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-handler = logging.FileHandler("tornado_api.log")
+path = os.path.dirname(os.path.abspath(__file__)) + "/logs/tornado_api.log"
+handler = logging.FileHandler(path)
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
