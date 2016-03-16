@@ -34,7 +34,6 @@ class CacheMixin(object):
 
     def prepare(self):
         super(CacheMixin, self).prepare()
-        self._cache_key = self._generate_cache_key()
         if settings.Enable_mc and (not self.is_update_cache):
             content = self.page_cache.get(self._cache_key)
             if isinstance(content, dict) and content.has_key(settings.expire_s_key):
@@ -50,13 +49,30 @@ class CacheMixin(object):
         else:
             logger.debug("Is not update.")
 
+        self.get = self.decorate_get(self.get)
+
+    def decorate_get(self, fn):
+        mutex_flag = "mutex_{}".format(self._cache_key)
+        def func(*args, **kw):
+            if self.page_cache.add(mutex_flag, 1, settings.expire_2H):
+                try:
+                    fn(*args, **kw)
+                finally:
+                    logger.debug("Del Mutex: " + mutex_flag)
+                    self.page_cache.delete(mutex_flag)
+            else:
+                if self.content:
+                    self.write_cache(self.content)
+                else:
+                    logger.error("Evictions", exc_info=True)
+        return func
+
     def write_cache(self, chunk):
         json_data = json.dumps(chunk)
         super(CacheMixin, self).write(json_data)
 
     def initialize(self, page_cache):
-        self._cache_key = None
-        self._result_buffer = []
+        self._cache_key = self._generate_cache_key()
         self.page_cache = page_cache
 
 
@@ -75,13 +91,12 @@ class CacheMixin(object):
 
     def write(self, chunk):
         logger.info("First ac: " + self._cache_key)
-        content = chunk
         soft_expire = int(time.time() + settings.expire_1M)
-        content.update({settings.expire_s_key: soft_expire})
+        chunk.update({settings.expire_s_key: soft_expire})
         real_expire = soft_expire + settings.expire_1H
-        self.page_cache.set(self._cache_key, content, real_expire)
+        self.page_cache.set(self._cache_key, chunk, real_expire)
         logger.info("Set  key: " + self._cache_key)
-        super(CacheMixin, self).write(json.dumps(content))
+        super(CacheMixin, self).write(json.dumps(chunk))
 
 
 class GamelistHandler(CacheMixin, tornado.web.RequestHandler):
