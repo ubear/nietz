@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME="app"                                  # Name of the application
+NAME="nietz_app"                                  # Name of the application
 DJANGODIR=/opt/app/python/c-nietz/nietz/nietz             # Django project directory
 SOCKFILE=/opt/app/python/c-nietz/run/gunicorn.sock  # we will communicte using this unix socket
 USER=root                                        # the user to run as

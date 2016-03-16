@@ -49,7 +49,7 @@ class GamelistHandler(tornado.web.RequestHandler):
 
 
 application = tornado.web.Application([
-    (r"/", GamelistHandler), ], debug=True)
+    (r"/api/", GamelistHandler), ], debug=True)
 
 
 if __name__ == "__main__":
